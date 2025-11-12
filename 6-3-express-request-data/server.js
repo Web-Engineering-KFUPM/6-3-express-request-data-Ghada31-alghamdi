@@ -113,7 +113,14 @@ const app = express();
 app.listen(3000, ()=> console.log("API running at http://localhost:3000"));
 
 // Query params: /echo?name=Ali&age=22
-
+ app.get("/echo", (req,res)=>{});
+ const {name, age} = req.query;
+ if(!name||!age){
+    return res.json({ok:true, name, age, msg:"Hello <name>, you are <age>" });
+ }
+else{
+   return res.stats(400).json({ ok:false, error:"name & age required" });
+}
 
 // Route params: /profile/First/Last
 
